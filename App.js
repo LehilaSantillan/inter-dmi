@@ -1,53 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator} from "@react-navigation/native-stack"; 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useRef } from 'react/cjs/react.development';
-import { TouchableOpacity } from 'react-native-web';
-import { useState } from 'react/cjs/react.production.min';
+import { useState } from 'react';
+import LoginScreen from "./src/pages/Login";
+import HomeScreen from "./src/pages/Home";
+import SettingsScreen from "./src/pages/Settings";
+import Profile from "./src/pages/Profile";
 
-function LoginScreen({onPress}){
-  return(
-    <view style={styles.container}>
-      <StatusBar/>
-      <text>Login Screen</text>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <text style={styles.text}>Login</text>
-      </TouchableOpacity>
-    </view>
-  );  
-}
-
-function HomeScreen(){
-  return(
-    <View style={styles.container}>
-      <text>Home Screen</text>
-      <TouchableOpacity style={styles.button} onPress={onPress}></TouchableOpacity>
-    </View>
-  )
-}
-
-function SettingsScreen(){
-  return(
-    <View style={styles.container}> 
-      <text>Settings Screen</text>
-    </View>
-  )
-}
-
-function Profile(){
-  return(
-    <View style={styles.container}> 
-      <text>Profile</text>
-    </View>
-  )
-}
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default function App() { 
   const [user, setUser] = useState(null);
   return (
     <NavigationContainer>
@@ -75,8 +39,8 @@ export default function App() {
                 iconName = "ios-list"
             } else if (route.name === "Profile"){
                 iconName = focused
-                ? "ios-heart-circule-outline"
-                : "ios-profile-circule-sharp"
+                ? "ios-happy-outline"
+                : "ios-happy-sharp"
             }
           
             return <Ionicons name={iconName} size={size} color={color}/>;
@@ -99,26 +63,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button:{
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#581845",
-    width: 150,
-    height: 40,
-    borderRadius: 10,
-    padding: 5,
-    marginTop: 10,r
-  },
-  text:{
-    color: "#fff"
-  }
-
-});
