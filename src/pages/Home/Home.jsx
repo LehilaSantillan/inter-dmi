@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, TouchableOpacity} from 'react-native';
-
+import { ButtonComponent } from "../../components/Button/Button.component";
 import { styles } from './Home.style';
 
 export default function HomeScreen({onPress}) {
