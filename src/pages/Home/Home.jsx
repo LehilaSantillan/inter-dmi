@@ -1,15 +1,30 @@
-import React from 'react';
-import { Text, View, TouchableOpacity} from 'react-native';
-import { ButtonComponent } from "../../components/Button/Button.component";
-import { styles } from './Home.style';
+import React, { useEffect, useContext } from "react";
+import { Text, View } from "react-native";
+import { styles } from "./Home.style";
+import { list } from "../../services/Posts";
 
-export default function HomeScreen({onPress}) {
+import { GlobalContext } from "../../context/global/global.context";
+
+
+export default function HomeScreen() {
+  const { listPosts, post } = useContext(GlobalContext);
+
+  useEffect(() => {
+    listPosts();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.text}>LogOut</Text>
-      </TouchableOpacity>
+      {post &&
+        post.map((post, i) => (
+          <View key={i}>
+            <Text>Name: {`${post.Name}`}</Text>
+            <Text>Description: {`${post.Description} `}</Text>
+            <Text style={{ marginBottom: 30 }}>
+              Fecha de Publicacion: {`${book.FechaPublicacion}`}
+            </Text>
+          </View>
+        ))}
     </View>
-  )
+  );
 }
